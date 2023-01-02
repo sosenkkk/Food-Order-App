@@ -26,6 +26,7 @@ const Cart = props => {
             ))}
         </ul>
     );
+    
     const hasItems = cxt.items.length > 0;
     return <Modal onClose={props.onClose} >
         {cartitems}

@@ -5,10 +5,17 @@ import { useEffect, useState } from "react";
 
 
 const AvailableMeals = () => {
+    const [isLoading, setisLoading] = useState(true);
+    const [meals, setmeals] = useState([]);
+    const[httpError, setHttpError]=useState();
 
     useEffect(()=>{
         const fetchMeals=async()=>{
             const response= await fetch('https://zwiggy-dc710-default-rtdb.firebaseio.com/Meals.json');
+
+            if(!response.ok){
+                throw new Error('Something went wrong');
+            }
             const responseData= await response.json();
             const loadedMeals=[];
             for(const key in responseData){
@@ -20,11 +27,30 @@ const AvailableMeals = () => {
                 });
             }
             setmeals(loadedMeals);
+            setisLoading(false);
         };
-        fetchMeals();
+        
+            fetchMeals().catch((error)=>{
+                setisLoading(false);
+                setHttpError(error.message);
+            });
+        
     }, []);
+    if(isLoading){
+        return(
+            <section className={styles.mealsLoading}>
+                <p>Loading...</p>
+            </section>
+        )
+    }
+    if(httpError){
+        return(
+            <section className={styles.mealsError}>
+                <p>{httpError}</p>
+            </section>
+        )
+    }
 
-    const [meals, setmeals] = useState([]);
 
     const mealsList = meals.map(meal => <MealItem id={meal.id} key={meal.id} name={meal.name} describe={meal.description} price={meal.price} />);
 

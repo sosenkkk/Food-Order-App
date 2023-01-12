@@ -28,3 +28,11 @@
     object-fit: cover;
     transform: rotateZ(-4deg) translateY(-4rem) translateX(-1rem);
 }
+
+.logo{
+    background-color: transparent;
+    color: rgb(255, 255, 255);
+    font-size: 2rem;
+    border: none;
+    cursor: pointer;
+}

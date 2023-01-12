@@ -3,7 +3,8 @@
 node_modules/.cache/default-development/*
 /.pnp
 .pnp.js
-
+/node_modules/.cache/default-development
+/node_modules/.cache/default-development/
 # testing
 /coverage
 

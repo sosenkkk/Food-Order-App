@@ -11,7 +11,8 @@
   }
   
   .description {
-    font-style: italic;
+    color: #4c4c4c;
+    font-size: 0.8rem;
   }
   
   .price {
